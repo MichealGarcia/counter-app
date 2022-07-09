@@ -1,1 +1,1 @@
-# counter-app
+# MERN Follow Along
