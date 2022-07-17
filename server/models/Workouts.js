@@ -6,7 +6,7 @@ const workoutSchema = new mongoose.Schema({
         required: true,
     },
     workoutDate: {
-        type: Date,
+        type: String,
         required: true,
     },
     workoutCount: {

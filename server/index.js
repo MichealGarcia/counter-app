@@ -46,9 +46,33 @@ app.get("/read", async (req, res) => {
         }
 
         res.send(result);
-    })
+    });
 });
 
+app.put("/update", async (req, res) => {
+
+    const newWorkoutName = req.body.newWorkoutName;
+    const id = req.body.id;
+
+    try {
+        await WorkoutModel.findById(id, (err, updatedWorkout) => {
+            updatedWorkout.workoutName = newWorkoutName;
+            updatedWorkout.save();
+            res.send("update");
+        })
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.delete("/delete/:id", async (req, res) => {
+
+    const id = req.params.id;
+
+    await WorkoutModel.findByIdAndRemove(id).exec();
+    res.send('deleted')
+
+})
 
 app.listen(3001, () => {
     console.log("Server Running on Port 3001...");
